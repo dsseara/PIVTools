@@ -66,7 +66,10 @@ clear unan vnan su sv gu gv lu lv upivpix vpivpix snrout upix vpix img1 img2 i
 
 % save([pwd,'\ExpParams.mat'],'exp','pivspec','filtspec');
 % clear exp
-
-if exist([pwd,'/WS'], 'dir') == 0, mkdir([pwd,'/WS']); end
-save([pwd,'/WS/cartPIV_WS.mat'],'-regexp', '^(?!(stack)$).');
+if ispc
+    if exist([pwd,'\WS'], 'dir') == 0, mkdir([pwd,'\WS']); end
+    save([pwd,'\WS\cartPIV_WS.mat'],'-regexp', '^(?!(stack)$).');
+elseif isunix
+    if exist([pwd,'/WS'], 'dir') == 0, mkdir([pwd,'/WS']); end
+    save([pwd,'/WS/cartPIV_WS.mat'],'-regexp', '^(?!(stack)$).');
 end

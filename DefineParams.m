@@ -3,7 +3,13 @@ close all
 
 %% Experiment Parameters
 [FileName,PathName] = uigetfile('*.tif');
-stack = stackread([PathName,'\',FileName]);
+
+if ispc
+    stack = stackread([PathName,'\',FileName]);
+elseif isunix
+    stack = stackread([PathName,'/',FileName]);
+end
+
 stackdim = size(stack);
 if length(stackdim) == 2, stackdim(3) = 1; end
 

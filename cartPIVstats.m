@@ -39,7 +39,11 @@ vdiv.std = nanstd(reshape(vdivt,[size(vdivt,1)*size(vdivt,2), size(vdivt,3)]));
 
 clearvars -except dx dy vx vy vmag ddiv vdiv
 
-if exist([pwd,'/WS'], 'dir') == 0, mkdir([pwd,'/WS']); end
-save([pwd,'/WS/cartPIVstats_WS.mat']);
+if isunix
+    if exist([pwd,'/WS'], 'dir') == 0, mkdir([pwd,'/WS']); end
+    save([pwd,'/WS/cartPIVstats_WS.mat']);
+elseif ispc
+    if exist([pwd,'\WS'], 'dir') == 0, mkdir([pwd,'\WS']); end
+    save([pwd,'\WS\cartPIVstats_WS.mat']);
 end
 
